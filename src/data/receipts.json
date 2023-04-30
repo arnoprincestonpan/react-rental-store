@@ -1,5 +1,12 @@
 [
     {
-        
+        "date" : "Sat Apr 29 2023 15:36:55 GMT-0700 (Pacific Daylight Saving Time)",
+        "staff" : "Jessies James",
+        "customer" : "Kevin Keith",
+        "items" : [
+            {
+                "serial" : "12345"
+            }
+        ]
     }
 ]

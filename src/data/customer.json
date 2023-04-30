@@ -1,0 +1,28 @@
+[
+    {
+        "customerNumber" : "12345",
+        "customerFirstName" : "Betty",
+        "customerLastName" : "Blue",
+        "customerAddress" : {
+            "streetNumber" : "1234",
+            "streetName" : "W12th Avenue",
+            "postalCode" : "V1A1A1"
+        },
+        "customerContact" : {
+            "phone" : 2252223333,
+            "email" : "bettyb@gmail.com"
+        },
+        "items" : [
+            {
+                "itemId" : "12345",
+                "checkoutDate" : "Sat Apr 29 2023 15:36:55 GMT-0700 (Pacific Daylight Saving Time)",
+                "timeLimit" : 3
+            },
+            {
+                "itemId" : "54321",
+                "checkoutDate" : "Sat Apr 29 2023 15:36:55 GMT-0700 (Pacific Daylight Saving Time)",
+                "timeLimit" : 1
+            }
+        ]
+    }
+]
