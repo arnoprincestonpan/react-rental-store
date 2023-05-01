@@ -11,3 +11,13 @@
  * - Start and End Time
  * - Add passwords to it
  */
+
+import React from 'react'
+
+function Home() {
+  return (
+    <div>Home</div>
+  )
+}
+
+export default Home

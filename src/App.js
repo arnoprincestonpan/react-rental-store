@@ -2,20 +2,22 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Home from "./pages/Home"
-import Layout from "./pages/Layout"
-import CustomerRentals from "./pages/CustomerRentals"
-import NoPage from "./pages/NoPage"
+import Catalog from "./pages/Catalog"
+import Customer from "./pages/Customer"
+import Navbar from './components/Navbar'
+
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout/>}>
-          <Route index element={<Home/>}/>
-          <Route path="customerrentals" element={<CustomerRentals/>}/>
-          <Route path="*" element={<NoPage/>}/>
-        </Route>
-      </Routes>
+      <div>
+        <Navbar/>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/catalog" element={<Catalog/>}/>
+          <Route path="/customer" element={<Customer/>}/>
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
