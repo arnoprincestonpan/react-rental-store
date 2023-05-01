@@ -1,5 +1,96 @@
 [
     {
-        
+        "titleId" : "a1234",
+        "title" : "Scream",
+        "itemCopies" : [
+            {
+                "itemId" : "a1234a",
+                "itemStatus" : true,
+                "itemGrade" : "norm",
+                "itemMedia" : "tape",
+                "titleId" : "a1234"
+            },
+            {
+                "itemId" : "a1234b",
+                "itemStatus" : true,
+                "itemGrade" : "norm",
+                "itemMedia" : "dvd",
+                "titleId" : "a1234"
+            },
+            {
+                "itemId" : "a1234c",
+                "itemStatus" : true,
+                "itemGrade" : "norm",
+                "itemMedia" : "tape",
+                "titleId" : "a1234"
+            },
+            {
+                "itemId" : "a1234d",
+                "itemStatus" : true,
+                "itemGrade" : "norm",
+                "itemMedia" : "vcd",
+                "titleId" : "a1234"
+            }
+        ],
+        "dateReleased" : "1997/06/24",
+        "genre" : "thriller"
+    },
+    {
+        "titleId" : "b1234",
+        "title" : "All Dogs Go to Heaven",
+        "itemCopies" : [
+            {
+                "itemId" : "b1234a",
+                "itemStatus" : true,
+                "itemGrade" : "norm",
+                "itemMedia" : "tape",
+                "titleId" : "b1234"
+            },
+            {
+                "itemId" : "b1234b",
+                "itemStatus" : true,
+                "itemGrade" : "norm",
+                "itemMedia" : "tape",
+                "titleId" : "b1234"
+            },
+            {
+                "itemId" : "b1234c",
+                "itemStatus" : true,
+                "itemGrade" : "norm",
+                "itemMedia" : "tape",
+                "titleId" : "b1234"
+            }
+        ],
+        "dateReleased" : "1990/08/28",
+        "genre" : "childrens"
+    },
+    {
+        "titleId" : "c1234",
+        "title" : "Titanic",
+        "itemCopies" : [
+            {
+                "itemId" : "c1234a",
+                "itemStatus" : true,
+                "itemGrade" : "norm",
+                "itemMedia" : "tape",
+                "titleId" : "c1234"
+            },
+            {
+                "itemId" : "c1234b",
+                "itemStatus" : true,
+                "itemGrade" : "norm",
+                "itemMedia" : "tape",
+                "titleId" : "c1234"
+            },
+            {
+                "itemId" : "c1234c",
+                "itemStatus" : true,
+                "itemGrade" : "norm",
+                "itemMedia" : "tape",
+                "titleId" : "c1234"
+            }
+        ],
+        "dateReleased" : "1998/09/01",
+        "genre" : "romance"
     }
 ]
