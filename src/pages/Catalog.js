@@ -45,9 +45,9 @@ function Catalog() {
     );
   });
   return (
-    <div className="catalog">
+    <div className="catalog container">
       <h1>Catalog</h1>
-      <table className="table">
+      <table className="table table-bordered table-striped border-primary">
         <thead>
           <tr>
             <th>Id</th>
