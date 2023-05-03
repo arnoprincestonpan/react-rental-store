@@ -47,7 +47,7 @@ function Catalog() {
   return (
     <div className="catalog">
       <h1>Catalog</h1>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Id</th>
