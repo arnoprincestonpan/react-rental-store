@@ -20,4 +20,5 @@ As a staff member, I want to track who rented items, so I can see what are the s
 #### Payment
 As a staff member, I want to calculate customer costs, so I can charge for penalties and for rents. 
 
-...still working on idea...(not to overwhel myself - one step at a time)
+#### Comments
+05-03-2023: Need to focus on Frontend only and not to get side tracked with ideas. Focus on function. Right now everything has been removed because the Routes don't show up. So focus on getting the pages working first and then putting them together. Start with Catalog.

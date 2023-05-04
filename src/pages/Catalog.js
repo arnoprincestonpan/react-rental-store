@@ -10,53 +10,41 @@
 
 import React from "react";
 import catalogData from "../data/catalog.json";
-import {Link, useMatch} from "react-router-dom"
 
 function Catalog() {
-  const catalogItems = catalogData.map((catalog) => {
-    // Count the number of occurrences of each media type
-    const mediaCounts = catalog.itemCopies.reduce((counts, itemCopy) => {
-      const media = itemCopy.itemMedia;
-      counts[media] = (counts[media] || 0) + 1;
-      return counts;
-    }, {});
-
-    // Convert the mediaCounts object into an array of key-value pairs
-    const mediaCountsArray = Object.entries(mediaCounts);
-
+  const catalogItems = catalogData.map((item) => {
+    let itemMediaTypes = []
+    item.itemCopies.map(itemCopy => {
+      if(itemCopy.itemStatus){
+        itemMediaTypes.push(itemCopy.itemMedia)
+      }
+    })
+    itemMediaTypes = [...new Set(itemMediaTypes)]
+    itemMediaTypes = itemMediaTypes.join(", ")
     return (
-      <tr key={catalog.titleId}>
-        <td>{catalog.titleId}</td>
-        <td>{catalog.title}</td>
-        <td>{catalog.itemCopies.length}</td>
-        <td>{catalog.dateReleased}</td>
-        <td>{catalog.genre}</td>
+      <tr id={item.titleId}>
+        <td>{item.titleId}</td>
+        <td>{item.title}</td>
+        <td>{item.itemCopies.length}</td>
+        <td>{itemMediaTypes}</td>
+        <td>{item.genre}</td>
         <td>
-          {mediaCountsArray
-            .map(([media, count]) => `${media} (${count})`)
-            .join(", ")}
-        </td>
-        <td>
-          <Link to={`/catalog/${catalog.titleId}`}>View</Link>
-          {' | '}
-          <Link to={`/catalog/${catalog.titleId}/edit`}>Edit</Link>
+          
         </td>
       </tr>
     );
   });
   return (
-    <div className="catalog container">
+    <div className="container">
       <h1>Catalog</h1>
-      <table className="table table-bordered table-striped border-primary">
+      <table className="table table-striped">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>ID</th>
             <th>Title</th>
-            <th>Number of Copies</th>
-            <th>Date Released</th>
-            <th>Genre</th>
+            <th># Copies</th>
             <th>Types of Media</th>
-            <th>Action</th>
+            <th>Genre</th>
           </tr>
         </thead>
         <tbody>{catalogItems}</tbody>
