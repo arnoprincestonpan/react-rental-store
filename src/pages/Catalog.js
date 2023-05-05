@@ -1,55 +1,26 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import catalogData from "../data/catalog.json"
 
 function Catalog() {
-  // for every catalog item, I will create an itemState
-  // showInfo - boolean - toggle to show item Copies information
-  const [itemStates, setItemStates] = useState(
-    catalogData.map((item) => ({ showInfo: false, showEdit: false, itemCopyStatus: false }))
-  );
+  const [data, setData] = useState(catalogData)
 
-  // simply flips the showInfo boolean
-  const toggleInfo = (index) => {
-    setItemStates(
-      itemStates.map((item, i) => 
-        // if there is a match, update otherwise the same item
-        i === index ? { ...item, showInfo: !item.showInfo, showEdit: false } : item
-      )
-    )
- }
+  // Viewing
+  const [showView, setShowView] = useState(false)
+  const [showEdit, setShowEdit] = useState(false)
 
-  // simply flips the showEdit boolean
-  const toggleEdit = (index) => {
-    setItemStates(
-      itemStates.map((item, i) => 
-      // if there is a match, update otherwise the same item
-      i === index ? { ...item, showEdit: !item.showEdit, showInfo: false } : item
-      )
-    )
- }
+  // 1st Layer Titles
+  const titles = data.map((item, index) => {
 
-  const catalogItem = catalogData.map((item, index) => {
-
-    const itemCopy = item.itemCopies.map((itemCopy) => 
+    // 2nd Layer - Item Copies
+    const copies = item.itemCopies.map((copy, index) => 
       <tr>
-        <td>{itemCopy.itemId}</td>
-        <td>{itemCopy.itemStatus.toString()}</td>
-        <td>{itemCopy.itemGrade}</td>
-        <td>{itemCopy.itemMedia}</td>
+        <td>{copy.itemId}</td>
+        <td>{copy.itemStatus.toString()}</td>
+        <td>{copy.itemGrade}</td>
+        <td>{copy.itemMedia}</td>
+        <td>{index + 1}</td>
       </tr>
     )
-
-    const itemEdit = item.itemCopies.map((itemCopy) =>
-    {
-      return(
-        <tr>
-          <td>{itemCopy.itemId}</td>
-          <td>
-            
-          </td>
-        </tr>
-      )
-    })
 
     return(
       <tr>
@@ -57,65 +28,46 @@ function Catalog() {
         <td>{item.title}</td>
         <td>{item.genre}</td>
         <td>{item.dateReleased}</td>
-        <td>{item.itemCopies.length}</td>
         <td>
-          <button type="button" onClick={() => toggleInfo(index)} className="btn border btn-info m-1">{ itemStates[index].showInfo? <>Hide</> : <>Info</> }</button>
-          <button type="button" onClick={() => toggleEdit(index)} className="btn border btn-warning m-1 "> { itemStates[index].showEdit? <>Save</> : <>Edit</> } </button>
+          <button className="btn btn-primary border" onClick={() => setShowView(!showView)}>{showView? "Close" : "View"}</button>
         </td>
-          {/* Info Area */}
-          { itemStates[index].showInfo &&       
-            <td>
-              <table className="table">
-               <thead>
+        <td>
+          {showView &&
+            <table className="table table-striped border">
+              <thead>
                 <tr>
                   <th>Item Id</th>
                   <th>Item Status</th>
                   <th>Item Grade</th>
-                  <th>Item Media Type</th>
+                  <th>Item Media</th>
+                  <th>Item #</th>
                 </tr>
-                </thead>
-                <tbody>
-                {itemCopy}
-                </tbody>
-              </table>
-            </td>
+              </thead>
+              <tbody>
+                {copies}
+              </tbody>
+            </table>
           }
-          {/* Edit Area */}
-          { itemStates[index].showEdit &&
-            <td>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Item Id</th>
-                    <th>Item Status</th>
-                    <th>Item Grade</th>
-                    <th>Item Media Type</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {itemEdit}
-                </tbody>
-              </table>
-            </td> 
-          }
+        </td>
       </tr>
     )
   })
+
   return (
-    <div className="container">
+    <div class="container">
       <h1>Catalog</h1>
       <table className="table border table-striped">
         <thead>
           <tr>
-            <th>Title Id</th>
+            <th>Title ID</th>
             <th>Title</th>
             <th>Genre</th>
             <th>Date Released</th>
-            <th># of Copies</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {catalogItem}
+          {titles}
         </tbody>
       </table>
     </div>
