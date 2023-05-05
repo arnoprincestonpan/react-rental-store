@@ -5,7 +5,7 @@ function Catalog() {
   // for every catalog item, I will create an itemState
   // showInfo - boolean - toggle to show item Copies information
   const [itemStates, setItemStates] = useState(
-    catalogData.map((item) => ({ showInfo: false, showEdit: false }))
+    catalogData.map((item) => ({ showInfo: false, showEdit: false, itemCopyStatus: false }))
   );
 
   // simply flips the showInfo boolean
@@ -13,7 +13,7 @@ function Catalog() {
     setItemStates(
       itemStates.map((item, i) => 
         // if there is a match, update otherwise the same item
-        i === index? {...item, showInfo: !item.showInfo} : item
+        i === index ? { ...item, showInfo: !item.showInfo, showEdit: false } : item
       )
     )
  }
@@ -23,10 +23,11 @@ function Catalog() {
     setItemStates(
       itemStates.map((item, i) => 
       // if there is a match, update otherwise the same item
-        i === index? {...item, showEdit: !item.showEdit} : item
+      i === index ? { ...item, showEdit: !item.showEdit, showInfo: false } : item
       )
     )
  }
+
   const catalogItem = catalogData.map((item, index) => {
 
     const itemCopy = item.itemCopies.map((itemCopy) => 
@@ -37,6 +38,19 @@ function Catalog() {
         <td>{itemCopy.itemMedia}</td>
       </tr>
     )
+
+    const itemEdit = item.itemCopies.map((itemCopy) =>
+    {
+      return(
+        <tr>
+          <td>{itemCopy.itemId}</td>
+          <td>
+            
+          </td>
+        </tr>
+      )
+    })
+
     return(
       <tr>
         <td>{item.titleId}</td>
@@ -48,6 +62,7 @@ function Catalog() {
           <button type="button" onClick={() => toggleInfo(index)} className="btn border btn-info m-1">{ itemStates[index].showInfo? <>Hide</> : <>Info</> }</button>
           <button type="button" onClick={() => toggleEdit(index)} className="btn border btn-warning m-1 "> { itemStates[index].showEdit? <>Save</> : <>Edit</> } </button>
         </td>
+          {/* Info Area */}
           { itemStates[index].showInfo &&       
             <td>
               <table className="table">
@@ -64,6 +79,24 @@ function Catalog() {
                 </tbody>
               </table>
             </td>
+          }
+          {/* Edit Area */}
+          { itemStates[index].showEdit &&
+            <td>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Item Id</th>
+                    <th>Item Status</th>
+                    <th>Item Grade</th>
+                    <th>Item Media Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {itemEdit}
+                </tbody>
+              </table>
+            </td> 
           }
       </tr>
     )
