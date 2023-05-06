@@ -48,8 +48,8 @@ function Catalog() {
         <td>{item.genre}</td>
         <td>{item.dateReleased}</td>
         <td>
-          <button className={showView? "btn btn-light border" : "btn btn-info border"}  onClick={() => setShowView(!showView)}>{showView? "Close" : "View"}</button>
-          <button className={showEdit? "btn btn-danger border" : "btn btn-warning border"} onClick={() => setShowEdit(!showEdit)}>{showEdit? "Save" : "Edit"}</button>
+          <button className={showView? "btn btn-light border" : "btn btn-info border"}  onClick={() => (setShowView(!showView), setShowEdit(false))}>{showView? "Close" : "View"}</button>
+          <button className={showEdit? "btn btn-danger border" : "btn btn-warning border"} onClick={() => (setShowEdit(!showEdit), setShowView(false))}>{showEdit? "Save" : "Edit"}</button>
         </td>
         <td>
           {
