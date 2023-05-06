@@ -23,23 +23,38 @@ function Catalog() {
     )
 
     // 2nd Layer - Item Copies - Edit 
-    const edits = item.itemCopies.map((copy, subIndex) => 
-      <tr>
-        <td>
-          <input type="text" value={copy.itemId}></input>
-        </td>
-        <td>
-          <input type="button" value={copy.itemStatus}></input>
-        </td>
-        <td>
-          <input type="text" value={copy.itemGrade}></input>
-        </td>
-        <td>
-          <input type="text" value={copy.itemMedia}></input>
-        </td>
-        <td>{subIndex + 1}</td>
-      </tr>
-    )
+    const edits = item.itemCopies.map((copy, subIndex) => {
+
+      const handleFieldChange = (subIndex, fieldName, newValue) => {
+        setData(prevData => {
+          const newData = [...prevData];
+          newData[index].itemCopies[subIndex] = {
+            ...newData[index].itemCopies[subIndex],
+            [fieldName]: newValue
+          };
+          return newData;
+        });
+      }
+
+      return (
+        <tr>
+          <td>
+            <input type="text" value={copy.itemId} onChange={e => handleFieldChange(subIndex, "itemId", e.target.value)}></input>
+          </td>
+          <td>
+            <input type="button" value={copy.itemStatus ? "True" : "False"} onClick={e => handleFieldChange(subIndex, "itemStatus", !copy.itemStatus)}></input>
+          </td>
+          <td>
+            <input type="text" value={copy.itemGrade} onChange={e => handleFieldChange(subIndex, "itemGrade", e.target.value)}></input>
+          </td>
+          <td>
+            <input type="text" value={copy.itemMedia} onChange={e => handleFieldChange(subIndex, "itemMedia", e.target.value)}></input>
+          </td>
+          <td>{subIndex + 1}</td>
+        </tr>
+      );
+    })
+
 
     return(
       <tr>
