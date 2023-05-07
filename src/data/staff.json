@@ -1,21 +1,26 @@
 [
     {
+        "quickLogin" : "ilovepie",
         "firstName" : "Arno",
         "lastName" : "Pan"
     },
     {
+        "quickLogin" : "trustme",
         "firstName" : "Eddie",
         "lastName" : "Tsai"
     },
     {
+        "quickLogin" : "yeehee",
         "firstName" : "Michael",
         "lastName" : "Jackson"
     },
     {
+        "quickLogin" : "tommy",
         "firstName" : "Pamela",
         "lastName" : "Anderson"
     },
     {
+        "quickLogin" : "greenlantern",
         "firstName" : "Ryan",
         "lastName" : "Reynolds"
     }

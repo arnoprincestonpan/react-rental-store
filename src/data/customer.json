@@ -16,12 +16,8 @@
             {
                 "itemId" : "12345",
                 "checkoutDate" : "Sat Apr 29 2023 15:36:55 GMT-0700 (Pacific Daylight Saving Time)",
-                "timeLimit" : 3
-            },
-            {
-                "itemId" : "54321",
-                "checkoutDate" : "Sat Apr 29 2023 15:36:55 GMT-0700 (Pacific Daylight Saving Time)",
-                "timeLimit" : 1
+                "timeLimit" : 3,
+                "staffUsed" : "Arno Pan"
             }
         ]
     }
