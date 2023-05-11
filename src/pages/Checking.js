@@ -4,35 +4,25 @@ import customerData from "../data/customer.json"
 import staffData from "../data/staff.json"
 
 function Checking() {
-    const [showCustomer, setShowCustomer] = useState(false)
-    const [catalog, setCatalog] = useState(catalogData)
-    const [customers, setCustomers] = useState(customerData)
-    const [staff, setStaff] = useState(staffData)
+    const [staffInfo, setStaffInfo] = useState(staffData)
+    const [shortPassword, setShortPassword] = useState("")
+    const [staffLoggedIn, setStaffLoggedIn] = useState("Not Logged In")
 
-    const [staffLogged, setStaffLogged] = useState("Guest Staff")
-    const [staffPassword, setStaffPassword] = useState("")
-    const [loggedIn, setLoggedIn] = useState(false)
-
-    const handleLogIn = (quickLoginCode) => {
-        console.log(staffPassword)
+    const handlePasswordSubmit = () => {
+        console.log(shortPassword)
+        console.log(staffLoggedIn)
+        const staffInfoIndex = staffInfo.findIndex(staff => staff.quickLogin === shortPassword)
+        console.log(staffInfoIndex)
+        if(staffInfo !== -1){
+            setStaffLoggedIn(`${staffInfo[staffInfoIndex].firstName} ${staffInfo[staffInfoIndex].lastName}`)
+        }
     }
 
     return (
     <div className='container'>
-        <h1>Checking</h1>
-        <div className="mb-1">
-            <form className="d-flex flex-row">
-                <div className="form-group">
-                    <div>
-                        <label htmlFor="staffQuickLogIn"><p className="text-uppercase">Staff Logged In: <b>{staffLogged}</b></p></label>
-                    </div>
-                    <div className="d-flex flex-row mx-auto">
-                        <input type="password" className="form-control" id="staffQuickLogin" onChange={(e) => setStaffPassword(e.targetValue)} placeholder="Enter Quick Login Code"/>
-                        <button type="submit" className="btn btn-primary border mx-1" onClick={()=>handleLogIn(staffPassword)}>Login</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+        <p>Staff Logged In: <b>{staffLoggedIn}</b></p>
+        <input className="border m-1" type="text" id="shortPassword" name="shortPassword" onChange={(e) => setShortPassword(e.target.value)}/>
+        <button className="btn btn-primary border m-1" onClick={() => handlePasswordSubmit()}>Quick Login</button>
     </div>
     )
 }
