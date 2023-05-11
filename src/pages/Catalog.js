@@ -13,7 +13,7 @@ function Catalog() {
 
     // 2nd Layer - Item Copies - View Only
     const copies = item.itemCopies.map((copy, subIndex) => 
-      <tr>
+      <tr key={subIndex}>
         <td>{copy.itemId}</td>
         <td>{copy.itemStatus.toString()}</td>
         <td>{copy.itemGrade}</td>
@@ -37,7 +37,7 @@ function Catalog() {
       }
 
       return (
-        <tr>
+        <tr key={subIndex}>
           <td>
             <input type="text" value={copy.itemId} onChange={e => handleFieldChange(subIndex, "itemId", e.target.value)}></input>
           </td>
@@ -57,7 +57,7 @@ function Catalog() {
 
 
     return(
-      <tr>
+      <tr key={index}>
         <td>{item.titleId}</td>
         <td>{item.title}</td>
         <td>{item.genre}</td>
@@ -107,7 +107,7 @@ function Catalog() {
   })
 
   return (
-    <div class="container">
+    <div className="container">
       <h1>Catalog</h1>
       <table className="table border table-striped">
         <thead>

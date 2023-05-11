@@ -14,11 +14,7 @@ function Checking() {
     const [loggedIn, setLoggedIn] = useState(false)
 
     const handleLogIn = (quickLoginCode) => {
-        const staffIndex = staff.findIndex(staff => staff.quickLogin === quickLoginCode)
-        if(staffIndex !== -1){
-            setStaffLogged(`${staff[staffIndex].firstName} ${staff[staffIndex].lastName}`)
-            setLoggedIn(true)
-        }
+        console.log(staffPassword)
     }
 
     return (
@@ -28,11 +24,11 @@ function Checking() {
             <form className="d-flex flex-row">
                 <div className="form-group">
                     <div>
-                        <label for="staffQuickLogIn"><p className="text-uppercase">Staff Quick Login</p></label>
+                        <label htmlFor="staffQuickLogIn"><p className="text-uppercase">Staff Logged In: <b>{staffLogged}</b></p></label>
                     </div>
                     <div className="d-flex flex-row mx-auto">
                         <input type="password" className="form-control" id="staffQuickLogin" onChange={(e) => setStaffPassword(e.targetValue)} placeholder="Enter Quick Login Code"/>
-                        <button type="submit" className="btn btn-primary border mx-1" onClick={handleLogIn(staffPassword)} disabled={!staffPassword}>Login</button>
+                        <button type="submit" className="btn btn-primary border mx-1" onClick={()=>handleLogIn(staffPassword)}>Login</button>
                     </div>
                 </div>
             </form>
