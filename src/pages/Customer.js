@@ -1,6 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
+import customerData from '../data/customer.json'
 
 function Customer() {
+  const [customerInfo, setCustomerInfo] = useState(customerData)
+
+
+  const allCustomers = customerInfo.map((customer) => (
+    <tbody>
+      <td>{customer.customerNumber}</td>
+      <td>{customer.customerFirstName} {customer.customerLastName}</td>
+      <td>
+        {customer.customerAddress.streetNumber}-{customer.customerAddress.streetName}
+        <br/>
+        {customer.customerAddress.postalCode}
+      </td>
+      <td>{customer.customerContact.phone}<br/>{customer.customerContact.email}</td>
+      <td>{customer.items.map((items) => 
+        <table className="table border table-striped">
+          <thead>
+            <tr>
+              <th>Item Id</th>
+              <th>Check Out Date</th>
+              <th>Time Limit</th>
+              <th>Staff</th>  
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{items.itemId}</td>
+              <td>{items.checkoutDate}</td>
+              <td>{items.timeLimit}</td>
+              <td>{items.staffUsed}</td>
+            </tr>
+          </tbody>
+        </table>
+      )}</td>
+    </tbody>
+  ))
+
   return (
     <div className="container">
       <h1>Customer Information</h1>
@@ -15,6 +52,21 @@ function Customer() {
           <div>
             <input className="border m-1" name="customer-search" id="customer-search"></input>
             <button className="btn btn-primary border m-1">Search</button>
+          </div>
+          <div>
+            <h2>Customers Matching</h2>
+            <table className="table border table-striped m-1">
+              <thead>
+                <tr>
+                  <th>Customer #</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Contact</th>
+                  <th>Checked Items</th>
+                </tr>
+              </thead>
+              { allCustomers }
+            </table>
           </div>
         </div>
     </div>
