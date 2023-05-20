@@ -3,15 +3,17 @@ import customerData from '../data/customer.json'
 
 function Customer() {
   const [customerInfo, setCustomerInfo] = useState(customerData)
+  const [searchingFor, setSearchingFor] = useState("")
+  const [customerProperty, setCustomerProperty] = useState("")
 
-  const handleSearchCustomer = () => (
+  const handleSearchCustomer = () => {
     console.log('handle search')
-  )
+  }
+  
 
-  const handleCustomerSelect = () => (
+  const handleCustomerSelect = () => {
     console.log('handle select')
-  )
-
+  }
 
   const allCustomers = customerInfo.map((customer) => (
     <tbody>
@@ -58,9 +60,9 @@ function Customer() {
             <label htmlFor='customer-search'>Customer Selected: </label>
           </div>
           <div>
-            <input className="border m-1 form-control" type="text" name="customer-search" id="customer-search"/>
-            <button className="btn btn-primary border m-1">Search</button>
-            <button className="btn btn-secondary border m-1">Select</button>
+            <input className="border m-1 form-control" type="text" name="customer-search" id="customer-search" onChange={(e) => setSearchingFor(e.target.value)}/>
+            <button className="btn btn-primary border m-1" onClick={() => handleSearchCustomer()}>Search</button>
+            <button className="btn btn-secondary border m-1" onClick={() => handleCustomerSelect()}>Select</button>
           </div>
           <div>
             <h2>Customers Matching</h2>
