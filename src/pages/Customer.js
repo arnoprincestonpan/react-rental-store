@@ -4,6 +4,14 @@ import customerData from '../data/customer.json'
 function Customer() {
   const [customerInfo, setCustomerInfo] = useState(customerData)
 
+  const handleSearchCustomer = () => (
+    console.log('handle search')
+  )
+
+  const handleCustomerSelect = () => (
+    console.log('handle select')
+  )
+
 
   const allCustomers = customerInfo.map((customer) => (
     <tbody>
@@ -50,8 +58,9 @@ function Customer() {
             <label htmlFor='customer-search'>Customer Selected: </label>
           </div>
           <div>
-            <input className="border m-1" name="customer-search" id="customer-search"></input>
+            <input className="border m-1 form-control" type="text" name="customer-search" id="customer-search"/>
             <button className="btn btn-primary border m-1">Search</button>
+            <button className="btn btn-secondary border m-1">Select</button>
           </div>
           <div>
             <h2>Customers Matching</h2>

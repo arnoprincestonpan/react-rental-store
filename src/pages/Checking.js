@@ -39,7 +39,7 @@ function Checking() {
                     </div>
                 :
                     <div>
-                        <input className="border m-1" type="password" id="shortPassword" name="shortPassword" onChange={(e) => setShortPassword(e.target.value)} value={shortPassword}/>
+                        <input className="border m-1 form-control" type="password" id="shortPassword" name="shortPassword" onChange={(e) => setShortPassword(e.target.value)} value={shortPassword}/>
                         <button className="btn btn-primary border m-1" onClick={() => handlePasswordSubmit()}>Quick Login</button>
                     </div>
             } 

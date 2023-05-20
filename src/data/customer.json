@@ -20,5 +20,49 @@
                 "staffUsed" : "Arno Pan"
             }
         ]
+    },
+    {
+        "customerNumber" : "54321",
+        "customerFirstName" : "Jessie",
+        "customerLastName" : "James",
+        "customerAddress" : {
+            "streetNumber" : "4321",
+            "streetName" : "E8th Avenue",
+            "postalCode" : "V1V2Z2"
+        },
+        "customerContact" : {
+            "phone" : 220225223,
+            "email" : "jessiej@gmail.com"
+        },
+        "items" : [
+            {
+                "itemId" : "54321",
+                "checkoutDate" : "Sat Apr 29 2023 15:36:55 GMT-0700 (Pacific Daylight Saving Time)",
+                "timeLimit" : 3,
+                "staffUsed" : "Arno Pan"
+            }
+        ]
+    },
+    {
+        "customerNumber" : "11111",
+        "customerFirstName" : "Ginger",
+        "customerLastName" : "Redhead",
+        "customerAddress" : {
+            "streetNumber" : "5252",
+            "streetName" : "W7th Avenue",
+            "postalCode" : "V2A1B1"
+        },
+        "customerContact" : {
+            "phone" : 225225225,
+            "email" : "ginger@gmail.com"
+        },
+        "items" : [
+            {
+                "itemId" : "00000",
+                "checkoutDate" : "Sat Apr 29 2023 15:36:55 GMT-0700 (Pacific Daylight Saving Time)",
+                "timeLimit" : 3,
+                "staffUsed" : "Arno Pan"
+            }
+        ]
     }
 ]
