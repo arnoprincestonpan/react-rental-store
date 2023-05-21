@@ -8,6 +8,7 @@ function Customer() {
 
   const handleSearchCustomer = () => {
     console.log('handle search')
+    console.log(searchingFor)
   }
   
 
@@ -25,7 +26,7 @@ function Customer() {
         {customer.customerAddress.postalCode}
       </td>
       <td>{customer.customerContact.phone}<br/>{customer.customerContact.email}</td>
-      <td>{customer.items.map((items) => 
+      {customer.items.map((items) => 
         <table className="table border table-striped">
           <thead>
             <tr>
@@ -44,7 +45,7 @@ function Customer() {
             </tr>
           </tbody>
         </table>
-      )}</td>
+      )}
     </tbody>
   ))
 
