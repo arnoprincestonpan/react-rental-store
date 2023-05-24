@@ -5,6 +5,7 @@ function Customer() {
   const [customerInfo, setCustomerInfo] = useState(customerData);
   const [searchingFor, setSearchingFor] = useState("");
   const [customerProperty, setCustomerProperty] = useState("");
+  const [showCheckedItems, setShowCheckedItems] = useState(false);
 
   const handleSearchCustomer = () => {
     console.log("handle search");
@@ -37,26 +38,28 @@ function Customer() {
           {customer.customerContact.email}
         </td>
         <td>
-          {customer.items.map((items) => (
-            <table className="table border table-striped">
-              <thead>
-                <tr>
-                  <th>Item Id</th>
-                  <th>Check Out Date</th>
-                  <th>Time Limit</th>
-                  <th>Staff</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{items.itemId}</td>
-                  <td>{items.checkoutDate}</td>
-                  <td>{items.timeLimit}</td>
-                  <td>{items.staffUsed}</td>
-                </tr>
-              </tbody>
-            </table>
-          ))}
+          <button className={showCheckedItems? "btn btn-secondary border" : "btn btn-primary border"} onClick={() => setShowCheckedItems(!showCheckedItems)}>{ showCheckedItems? "Close" : "View" }</button>
+          {showCheckedItems &&
+            customer.items.map((items) => (
+              <table className="table border table-striped">
+                <thead>
+                  <tr>
+                    <th>Item Id</th>
+                    <th>Check Out Date</th>
+                    <th>Time Limit</th>
+                    <th>Staff</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{items.itemId}</td>
+                    <td>{items.checkoutDate}</td>
+                    <td>{items.timeLimit}</td>
+                    <td>{items.staffUsed}</td>
+                  </tr>
+                </tbody>
+              </table>
+            ))}
         </td>
       </tr>
     </tbody>
