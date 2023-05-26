@@ -5,7 +5,7 @@ function Customer() {
   const [customerInfo, setCustomerInfo] = useState(customerData);
   const [searchingFor, setSearchingFor] = useState("");
   const [customerProperty, setCustomerProperty] = useState("");
-  const [showCheckedItems, setShowCheckedItems] = useState(false);
+  const [showCheckedItems, setShowCheckedItems] = useState(Array(customerInfo.length).fill(false));
 
   const handleSearchCustomer = () => {
     console.log("handle search");
@@ -16,8 +16,16 @@ function Customer() {
     console.log("handle select");
   };
 
-  const allCustomers = customerInfo.map((customer) => (
-    <tbody>
+  const handleToggleCheckedItems = (index) => {
+    setShowCheckedItems((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
+
+  const allCustomers = customerInfo.map((customer, index) => (
+    <tbody key={customer.customerNumber}>
       <tr>
         <td>
           <button className="btn border">Select</button>
@@ -38,8 +46,31 @@ function Customer() {
           {customer.customerContact.email}
         </td>
         <td>
-          <button className={showCheckedItems? "btn btn-secondary border" : "btn btn-primary border"} onClick={() => setShowCheckedItems(!showCheckedItems)}>{ showCheckedItems? "Close" : "View" }</button>
-          {showCheckedItems &&
+          <button
+            className={showCheckedItems[index] ? "btn btn-secondary border" : "btn btn-primary border"}
+            onClick={() => handleToggleCheckedItems(index)}
+          >
+            {showCheckedItems[index] ? "Close" : "View"}
+          </button>
+          {/* {showCheckedItems[index] && (
+            <table className="table border table-striped">
+              <thead>
+                <tr>
+                  <th>Item Id</th>
+                  <th>Check Out Date</th>
+                  <th>Time Limit</th>
+                  <th>Staff</th>
+                </tr>
+              </thead>
+              <tbody>
+                <h1>Hi</h1>
+                <tr>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          )} */}
+          {showCheckedItems[index] &&
             customer.items.map((items) => (
               <table className="table border table-striped">
                 <thead>
@@ -59,7 +90,8 @@ function Customer() {
                   </tr>
                 </tbody>
               </table>
-            ))}
+            ))
+          }
         </td>
       </tr>
     </tbody>
