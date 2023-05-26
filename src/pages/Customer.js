@@ -7,13 +7,16 @@ function Customer() {
   const [customerProperty, setCustomerProperty] = useState("");
   const [showCheckedItems, setShowCheckedItems] = useState(Array(customerInfo.length).fill(false));
 
-  const handleSearchCustomer = () => {
+  const handleSearchCustomer = (customer) => {
     console.log("handle search");
+    setSearchingFor(customer)
     console.log(searchingFor);
   };
 
-  const handleCustomerSelect = () => {
+  const handleCustomerSelect = (customer) => {
     console.log("handle select");
+    setCustomerProperty(customer)
+    console.log(customerProperty)
   };
 
   const handleToggleCheckedItems = (index) => {
@@ -28,7 +31,7 @@ function Customer() {
     <tbody key={customer.customerNumber}>
       <tr>
         <td>
-          <button className="btn border">Select</button>
+          <button className="btn btn-primary border" onClick={() => handleCustomerSelect(customer)}>Select</button>
         </td>
         <td>{customer.customerNumber}</td>
         <td>
@@ -52,24 +55,6 @@ function Customer() {
           >
             {showCheckedItems[index] ? "Close" : "View"}
           </button>
-          {/* {showCheckedItems[index] && (
-            <table className="table border table-striped">
-              <thead>
-                <tr>
-                  <th>Item Id</th>
-                  <th>Check Out Date</th>
-                  <th>Time Limit</th>
-                  <th>Staff</th>
-                </tr>
-              </thead>
-              <tbody>
-                <h1>Hi</h1>
-                <tr>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          )} */}
           {showCheckedItems[index] &&
             customer.items.map((items) => (
               <table className="table border table-striped">
