@@ -1,127 +1,58 @@
-import React, {useState} from 'react'
-import catalogData from "../data/catalog.json"
+import React, { useState } from 'react'
+import catalogJson from '../data/catalog.json'
 
 function Catalog() {
-  const [data, setData] = useState(catalogData)
+  const [catalogData, setCatalogData] = useState(catalogJson)
 
-  // Viewing
-  const [showView, setShowView] = useState(false)
-  const [showEdit, setShowEdit] = useState(false)
-
-  // 1st Layer Titles
-  const titles = data.map((item, index) => {
-
-    // 2nd Layer - Item Copies - View Only
-    const copies = item.itemCopies.map((copy, subIndex) => 
-      <tr key={subIndex}>
-        <td>{copy.itemId}</td>
-        <td>{copy.itemStatus.toString()}</td>
-        <td>{copy.itemGrade}</td>
-        <td>{copy.itemMedia}</td>
-        <td>{subIndex + 1}</td>
-      </tr>
-    )
-
-    // 2nd Layer - Item Copies - Edit 
-    const edits = item.itemCopies.map((copy, subIndex) => {
-
-      const handleFieldChange = (subIndex, fieldName, newValue) => {
-        setData(prevData => {
-          const newData = [...prevData];
-          newData[index].itemCopies[subIndex] = {
-            ...newData[index].itemCopies[subIndex],
-            [fieldName]: newValue
-          };
-          return newData;
-        });
-      }
-
-      return (
-        <tr key={subIndex}>
-          <td>
-            <input type="text" value={copy.itemId} onChange={e => handleFieldChange(subIndex, "itemId", e.target.value)}></input>
-          </td>
-          <td>
-            <input type="button" value={copy.itemStatus ? "True" : "False"} onClick={e => handleFieldChange(subIndex, "itemStatus", !copy.itemStatus)}></input>
-          </td>
-          <td>
-            <input type="text" value={copy.itemGrade} onChange={e => handleFieldChange(subIndex, "itemGrade", e.target.value)}></input>
-          </td>
-          <td>
-            <input type="text" value={copy.itemMedia} onChange={e => handleFieldChange(subIndex, "itemMedia", e.target.value)}></input>
-          </td>
-          <td>{subIndex + 1}</td>
-        </tr>
-      );
-    })
-
-
-    return(
-      <tr key={index}>
-        <td>{item.titleId}</td>
-        <td>{item.title}</td>
-        <td>{item.genre}</td>
-        <td>{item.dateReleased}</td>
+  const catalogDataItems = catalogData.map((items) =>
+    <tbody>
+      <tr>
+        <td><button className="btn btn-primary border">Select</button></td>
+        <td>{items.titleId}</td>
+        <td>{items.title}</td>
+        <td>{items.genre}</td>
+        <td>{items.dateReleased}</td>
         <td>
-          <button className={showView? "btn btn-light border" : "btn btn-info border"}  onClick={() => (setShowView(!showView), setShowEdit(false))}>{showView? "Close" : "View"}</button>
-          <button className={showEdit? "btn btn-danger border" : "btn btn-warning border"} onClick={() => (setShowEdit(!showEdit), setShowView(false))}>{showEdit? "Save" : "Edit"}</button>
-        </td>
-        <td>
-          {
-            showView &&
-            <table className="table table-striped border">
-              <thead>
-                <tr>
-                  <th>Item Id</th>
-                  <th>Item Status</th>
-                  <th>Item Grade</th>
-                  <th>Item Media</th>
-                  <th>Item #</th>
-                </tr>
-              </thead>
-              <tbody>
-                {copies}
-              </tbody>
-            </table>
-          }
-          {
-            showEdit &&
-            <table className="table table-striped border">
-              <thead>
-                <tr>
-                  <th>Item Id</th>
-                  <th>Item Status</th>
-                  <th>Item Grade</th>
-                  <th>Item Media</th>
-                  <th>Item #</th>
-                </tr>
-              </thead>
-              <tbody>
-                {edits}
-              </tbody>
-            </table>
-          }
+          <button className="btn btn-primary">CheckOut</button>
+          <button className="btn btn-info">Details</button>
         </td>
       </tr>
-    )
-  })
+    </tbody>
+  )
 
   return (
     <div className="container">
       <h1>Catalog</h1>
+      {/* Use dropdown menus to select categories...
+        1.) Genre
+        2.) Release Date
+        3.) Title
+        4.) TitleId
+        *** optional - In Stock? Checkbox***
+       */}
+      <div>
+        <label className="form-check-label" htmlFor="">Search: </label>
+        <input className="form-control" type="text"  />
+        <label className="form-check-label" htmlFor="category-select">Search by Category: </label>
+        <select className="form-select" name="category-select" id="category-select">
+          <option value="title" selected>Title</option>
+          <option value="genre">Genre</option>
+          <option value="dateReleased">Date Released</option>
+          <option value="titleId">Title Id</option>
+        </select>
+      </div>
       <table className="table border table-striped">
         <thead>
           <tr>
-            <th>Title ID</th>
+            <th></th>
+            <th>Title Id</th>
             <th>Title</th>
             <th>Genre</th>
             <th>Date Released</th>
-            <th>Actions</th>
+            <th>Availability</th>
           </tr>
         </thead>
-        <tbody>
-          {titles}
-        </tbody>
+        {catalogDataItems}
       </table>
     </div>
   )
