@@ -6,6 +6,10 @@ function Catalog() {
   const [categorySelect, setCategorySelect] = useState("title")
   const [searchTerm, setSearchTerm] = useState("")
 
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value)
+  }
+
   const catalogDataItems = catalogData.map((items) =>
     <tbody>
       <tr>
@@ -34,7 +38,7 @@ function Catalog() {
        */}
       <div>
         <label className="form-check-label" htmlFor="">Search: </label>
-        <input className="form-control" type="text"  />
+        <input className="form-control" type="text" name="search-term" id="search-term" onChange={(e) => handleSearch(e)}  />
         <label className="form-check-label" htmlFor="category-select">Search by Category: </label>
         <select className="form-select" name="category-select" id="category-select" onChange={(e) => setCategorySelect(e.target.value)}>
           <option value="title" selected>Title</option>
