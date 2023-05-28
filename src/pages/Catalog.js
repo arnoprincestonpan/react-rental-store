@@ -3,6 +3,8 @@ import catalogJson from '../data/catalog.json'
 
 function Catalog() {
   const [catalogData, setCatalogData] = useState(catalogJson)
+  const [categorySelect, setCategorySelect] = useState("title")
+  const [searchTerm, setSearchTerm] = useState("")
 
   const catalogDataItems = catalogData.map((items) =>
     <tbody>
@@ -34,7 +36,7 @@ function Catalog() {
         <label className="form-check-label" htmlFor="">Search: </label>
         <input className="form-control" type="text"  />
         <label className="form-check-label" htmlFor="category-select">Search by Category: </label>
-        <select className="form-select" name="category-select" id="category-select">
+        <select className="form-select" name="category-select" id="category-select" onChange={(e) => setCategorySelect(e.target.value)}>
           <option value="title" selected>Title</option>
           <option value="genre">Genre</option>
           <option value="dateReleased">Date Released</option>
@@ -54,6 +56,11 @@ function Catalog() {
         </thead>
         {catalogDataItems}
       </table>
+      <div>
+       <h1>Debugging Area</h1>
+       <p>Search Term: {searchTerm}</p>
+       <p>Category Selected: {categorySelect}</p>
+      </div>
     </div>
   )
 }
