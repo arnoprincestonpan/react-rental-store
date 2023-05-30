@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import catalogJson from '../data/catalog.json'
 
 function Catalog() {
@@ -6,6 +6,14 @@ function Catalog() {
   const [categorySelect, setCategorySelect] = useState("title")
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedItem, setSelectedItem] = useState("")
+
+  useEffect(() => {
+    // Filter the catalog data when searchTerm or categorySelect changes
+    const filteredData = catalogJson.filter((item) =>
+      item[categorySelect].toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setCatalogData(filteredData);
+  }, [searchTerm, categorySelect]);
 
   /**
    * Handle Search Function
