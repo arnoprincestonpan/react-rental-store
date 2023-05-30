@@ -6,6 +6,7 @@ function Catalog() {
   const [categorySelect, setCategorySelect] = useState("title")
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedItem, setSelectedItem] = useState("")
+  const [showSelectedItem, setShowSelectedItem] = useState(Array(catalogData.length).fill(false))
 
   useEffect(() => {
     // Filter the catalog data when searchTerm or categorySelect changes
@@ -13,16 +14,10 @@ function Catalog() {
       item[categorySelect].toLowerCase().includes(searchTerm.toLowerCase())
     );
     setCatalogData(filteredData);
+    // Show Items Array, 0 and 1 for ON/OFF Toggle
+    // Every time the list is changed so does the Boolean Array
+    setShowSelectedItem(Array(catalogData.length).fill(false))
   }, [searchTerm, categorySelect]);
-
-  /**
-   * Handle Search Function
-   * 1.) Set the Search Term
-   * 2.) Search the Search Term (default: "title") by the Category Select
-   */
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value)
-  }
 
   const catalogDataItems = catalogData.map((items) =>
     <tbody>
@@ -34,7 +29,33 @@ function Catalog() {
         <td>{items.dateReleased}</td>
         <td>
           <button className="btn btn-primary m-1">CheckOut</button>
-          <button className="btn btn-info">Details</button>
+          <button className="btn btn-info" onClick={() => setShowSelectedItem(prevState => prevState.map((value, index) => index === catalogData.indexOf(items) ? !value : value))}>Details</button>
+          {/** Delete this when done, checking index # */}
+          <p>{catalogData.indexOf(items)}</p>
+          <p>Boolean: {showSelectedItem[catalogData.indexOf(items)].toString()}</p>
+          { showSelectedItem[catalogData.indexOf(items)] &&
+            <table>
+              <thead>
+                <tr>
+                  <th>Item Id</th>
+                  <th>Item Status</th>
+                  <th>Item Grade</th>
+                  <th>Item Media</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.itemCopies.map((medias) => (
+                  <tr>
+                    <td>{medias.itemId}</td>
+                    <td>{medias.itemStatus}</td>
+                    <td>{medias.itemGrade}</td>
+                    <td>{medias.itemMedia}</td>
+                    <td>{medias.titleId}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          }
         </td>
       </tr>
     </tbody>
@@ -52,7 +73,7 @@ function Catalog() {
        */}
       <div>
         <label className="form-check-label" htmlFor="">Search: </label>
-        <input className="form-control" type="text" name="search-term" id="search-term" onChange={(e) => handleSearch(e)}  />
+        <input className="form-control" type="text" name="search-term" id="search-term" onChange={(e) => setSearchTerm(e.target.value)}  />
         <label className="form-check-label" htmlFor="category-select">Search by Category: </label>
         <select className="form-select" name="category-select" id="category-select" onChange={(e) => setCategorySelect(e.target.value)}>
           <option value="title" selected>Title</option>
@@ -77,6 +98,8 @@ function Catalog() {
       </table>
       <div>
        <h1>Debugging Area</h1>
+       <p>Number of Items: {catalogData.length}</p>
+       <p>Number of Show Itmes: {showSelectedItem.length}</p>
        <p>Search Term: {searchTerm}</p>
        <p>Category Selected: {categorySelect}</p>
        <p>Item Selected: {selectedItem.titleId}</p>
