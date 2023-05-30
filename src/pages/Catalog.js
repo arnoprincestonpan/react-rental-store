@@ -31,23 +31,24 @@ function Catalog() {
           <button className="btn btn-primary m-1">CheckOut</button>
           <button className="btn btn-info" onClick={() => setShowSelectedItem(prevState => prevState.map((value, index) => index === catalogData.indexOf(items) ? !value : value))}>Details</button>
           {/** Delete this when done, checking index # */}
-          <p>{catalogData.indexOf(items)}</p>
-          <p>Boolean: {showSelectedItem[catalogData.indexOf(items)].toString()}</p>
+          {/* <p>{catalogData.indexOf(items)}</p>
+          <p>Boolean: {showSelectedItem[catalogData.indexOf(items)].toString()}</p> */}
           { showSelectedItem[catalogData.indexOf(items)] &&
-            <table>
+            <table className="table border table-striped">
               <thead>
                 <tr>
                   <th>Item Id</th>
                   <th>Item Status</th>
                   <th>Item Grade</th>
                   <th>Item Media</th>
+                  <th>Item Id</th>
                 </tr>
               </thead>
               <tbody>
                 {items.itemCopies.map((medias) => (
                   <tr>
                     <td>{medias.itemId}</td>
-                    <td>{medias.itemStatus}</td>
+                    <td>{medias.itemStatus.toString()}</td>
                     <td>{medias.itemGrade}</td>
                     <td>{medias.itemMedia}</td>
                     <td>{medias.titleId}</td>
