@@ -5,7 +5,13 @@ function Catalog() {
   const [catalogData, setCatalogData] = useState(catalogJson)
   const [categorySelect, setCategorySelect] = useState("title")
   const [searchTerm, setSearchTerm] = useState("")
+  const [selectedItem, setSelectedItem] = useState("")
 
+  /**
+   * Handle Search Function
+   * 1.) Set the Search Term
+   * 2.) Search the Search Term (default: "title") by the Category Select
+   */
   const handleSearch = (event) => {
     setSearchTerm(event.target.value)
   }
@@ -13,13 +19,13 @@ function Catalog() {
   const catalogDataItems = catalogData.map((items) =>
     <tbody>
       <tr>
-        <td><button className="btn btn-primary border">Select</button></td>
+        <td><button className="btn btn-primary border" onClick={() => setSelectedItem(items)}>Select</button></td>
         <td>{items.titleId}</td>
         <td>{items.title}</td>
         <td>{items.genre}</td>
         <td>{items.dateReleased}</td>
         <td>
-          <button className="btn btn-primary">CheckOut</button>
+          <button className="btn btn-primary m-1">CheckOut</button>
           <button className="btn btn-info">Details</button>
         </td>
       </tr>
@@ -47,6 +53,7 @@ function Catalog() {
           <option value="titleId">Title Id</option>
         </select>
       </div>
+      <br/>
       <table className="table border table-striped">
         <thead>
           <tr>
@@ -64,6 +71,7 @@ function Catalog() {
        <h1>Debugging Area</h1>
        <p>Search Term: {searchTerm}</p>
        <p>Category Selected: {categorySelect}</p>
+       <p>Item Selected: {selectedItem.titleId}</p>
       </div>
     </div>
   )
