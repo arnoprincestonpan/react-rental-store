@@ -31,7 +31,7 @@ function Catalog() {
         <td>{items.dateReleased}</td>
         <td>
           <button className="btn btn-primary m-1">CheckOut</button>
-          <button className="btn btn-info" onClick={() => setShowSelectedItem(prevState => prevState.map((value, index) => index === catalogData.indexOf(items) ? !value : value))}>Details</button>
+          <button className={showSelectedItem[catalogData.indexOf(items)] ? "btn btn-secondary" : "btn btn-info"} onClick={() => setShowSelectedItem(prevState => prevState.map((value, index) => index === catalogData.indexOf(items) ? !value : value))}>{showSelectedItem[catalogData.indexOf(items)] ? "Close" : "View"}</button>
           {/** Delete this when done, checking index # */}
           {/* <p>{catalogData.indexOf(items)}</p>
           <p>Boolean: {showSelectedItem[catalogData.indexOf(items)].toString()}</p> */}
