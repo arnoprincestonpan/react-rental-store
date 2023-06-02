@@ -17,6 +17,8 @@ function Catalog() {
     // Show Items Array, 0 and 1 for ON/OFF Toggle
     // Every time the list is changed so does the Boolean Array
     setShowSelectedItem(Array(catalogData.length).fill(false))
+    // clear selectedItem
+    setSelectedItem("")
   }, [searchTerm, categorySelect]);
 
   const catalogDataItems = catalogData.map((items) =>
