@@ -21,7 +21,7 @@ function Catalog() {
 
   const catalogDataItems = catalogData.map((items) =>
     <tbody>
-      <tr>
+      <tr className={items.titleId === selectedItem.titleId? "table-warning" : ""}>
         <td><button className="btn btn-primary border" onClick={() => setSelectedItem(items)}>Select</button></td>
         <td>{items.titleId}</td>
         <td>{items.title}</td>
