@@ -29,7 +29,7 @@ function Customer() {
 
   const allCustomers = customerInfo.map((customer, index) => (
     <tbody key={customer.customerNumber}>
-      <tr>
+      <tr className={customer.customerNumber === customerProperty.customerNumber? "table-warning" : ""}>
         <td>
           <button className="btn btn-primary border" onClick={() => handleCustomerSelect(customer)}>Select</button>
         </td>
