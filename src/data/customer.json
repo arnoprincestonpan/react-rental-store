@@ -6,6 +6,8 @@
         "customerAddress" : {
             "streetNumber" : "1234",
             "streetName" : "W12th Avenue",
+            "city": "SomeCity",
+            "province" : "CC",
             "postalCode" : "V1A1A1"
         },
         "customerContact" : {
@@ -28,6 +30,8 @@
         "customerAddress" : {
             "streetNumber" : "4321",
             "streetName" : "E8th Avenue",
+            "city": "SomeCity",
+            "province" : "CC",
             "postalCode" : "V1V2Z2"
         },
         "customerContact" : {
@@ -50,6 +54,8 @@
         "customerAddress" : {
             "streetNumber" : "5252",
             "streetName" : "W7th Avenue",
+            "city": "SomeCity",
+            "province" : "CC",
             "postalCode" : "V2A1B1"
         },
         "customerContact" : {
