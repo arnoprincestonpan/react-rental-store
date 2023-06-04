@@ -5,7 +5,7 @@ function Customer() {
   const [customerData, setCustomerData] = useState(customerJson)
   const [selectedCustomer, setSelectedCustomer] = useState("")
   const [selectedCustomerCategory, setSelectedCustomerCategory] = useState("customerContact.phone")
-  const [showCustomerInformation, setShowCustomerInformation] = useState()
+  const [showCustomerInformation, setShowCustomerInformation] = useState(Array(customerData.length).fill(false))
 
   const customersItems = customerData.map((items) => 
     <tr key={items.customerNumber}>
@@ -15,6 +15,32 @@ function Customer() {
       <td>{items.customerContact.phone}</td>
       <td>{items.customerContact.email}</td>
       <td>
+      <button className={showCustomerInformation[customerData.indexOf(items)] ? "btn btn-secondary" : "btn btn-info"} onClick={() => setShowCustomerInformation(prevState => prevState.map((value, index) => index === customerData.indexOf(items) ? !value : value))}>{showCustomerInformation[customerData.indexOf(items)] ? "Close" : "View"}</button>
+        {
+          showCustomerInformation[customerData.indexOf(items)] && 
+          <table className="table table-striped border">
+            <thead>
+              <tr>
+                <th>Item Id</th>
+                <th>Check Out Date</th>
+                <th>Time Limit</th>
+                <th>Staff Used</th>
+              </tr>
+            </thead>
+            <tbody>
+              { 
+                items.items.map((checked) => (
+                  <tr>
+                    <td>{checked.itemId}</td>
+                    <td>{checked.checkoutDate}</td>
+                    <td>{checked.timeLimit}</td>
+                    <td>{checked.staffUsed}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        }
       </td>
     </tr>
   )
