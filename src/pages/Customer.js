@@ -7,6 +7,13 @@ function Customer() {
   const [selectedCustomerCategory, setSelectedCustomerCategory] = useState("customerContact.phone")
   const [showCustomerInformation, setShowCustomerInformation] = useState(Array(customerData.length).fill(false))
 
+  useEffect(() => {
+    // Filter the Customer the moment the page is opened.
+    const filteredCustomerData = customerData.filter((item) => 
+      item[selectedCustomerCategory].toLowerCase()
+    )
+  })
+
   const customersItems = customerData.map((items) => 
     <tr key={items.customerNumber}>
       <td>{items.customerNumber}</td>
