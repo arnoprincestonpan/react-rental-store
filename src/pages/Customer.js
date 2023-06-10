@@ -4,15 +4,20 @@ import customerJson from "../data/customer.json"
 function Customer() {
   const [customerData, setCustomerData] = useState(customerJson)
   const [selectedCustomer, setSelectedCustomer] = useState("")
-  const [selectedCustomerCategory, setSelectedCustomerCategory] = useState("customerContact.phone")
+  const [selectedCustomerCategory, setSelectedCustomerCategory] = useState("")
+  const [searchTermCustomer, setSearchTermCustomer] = useState("")
   const [showCustomerInformation, setShowCustomerInformation] = useState(Array(customerData.length).fill(false))
 
   useEffect(() => {
     // Filter the Customer the moment the page is opened.
     const filteredCustomerData = customerData.filter((item) => 
-      item[selectedCustomerCategory].toLowerCase()
+      item
     )
-  })
+    console.log(selectedCustomerCategory)
+    setCustomerData(filteredCustomerData)
+    setShowCustomerInformation(Array(customerData.length).fill(false))
+    setSelectedCustomer("")
+  }, [searchTermCustomer, selectedCustomerCategory])
 
   const customersItems = customerData.map((items) => 
     <tr key={items.customerNumber}>
